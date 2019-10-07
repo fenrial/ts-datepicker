@@ -1,0 +1,16 @@
+.calendar {
+    width: 180px;
+    
+    &__head {
+        display: flex;
+    }
+
+    &__day {
+        width: 25px;
+        height: 25px;
+        background: none;
+        outline: none;
+        border: none;
+    }
+
+}

@@ -1,0 +1,21 @@
+{
+  "name": "datepicker",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "date-fns": "^2.4.1",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2",
+    "sass": "^1.23.0"
+  },
+  "devDependencies": {
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "parcel-bundler": "^1.12.4",
+    "typescript": "^3.6.3"
+  },
+  "scripts": {
+    "start": "parcel index.html"
+  }
+}
