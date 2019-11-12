@@ -1,16 +1,19 @@
 .calendar {
-    width: 180px;
-    
-    &__head {
-        display: flex;
-    }
+  width: 180px;
 
-    &__day {
-        width: 25px;
-        height: 25px;
-        background: none;
-        outline: none;
-        border: none;
-    }
+  &__head {
+    display: flex;
+  }
 
+  &__day {
+    width: 25px;
+    height: 25px;
+    background: none;
+    outline: none;
+    border: none;
+  }
+
+  &__month-name {
+    white-space: nowrap;
+  }
 }
