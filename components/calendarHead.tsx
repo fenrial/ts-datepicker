@@ -21,13 +21,24 @@ const CalendarHead: React.SFC<ICalendarHeadProps> = props => {
 
     return (
         <div className="calendar__head">
-            <button className="calendar__prev-month" onClick={getPrevMonth}>
-                prev
-            </button>
-            <div className="calendar__month-name">{`${monthName}, ${year}`}</div>
-            <button className="calendar__next-month" onClick={getNextMonth}>
-                next
-            </button>
+            <div className="calendar__month-wrap">
+                <button className="calendar__prev-month" onClick={getPrevMonth}>
+                    prev
+                </button>
+                <div className="calendar__month-name">{`${monthName}, ${year}`}</div>
+                <button className="calendar__next-month" onClick={getNextMonth}>
+                    next
+                </button>
+            </div>
+            <div className="calendar__days-of-week">
+                <span className="calendar__weekday">Пн</span>
+                <span className="calendar__weekday">Вт</span>
+                <span className="calendar__weekday">Ср</span>
+                <span className="calendar__weekday">Чт</span>
+                <span className="calendar__weekday">Пт</span>
+                <span className="calendar__weekday">Сб</span>
+                <span className="calendar__weekday">Вс</span>
+            </div>
         </div>
     );
 };

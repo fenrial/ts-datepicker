@@ -1,5 +1,6 @@
 import { format, getDaysInMonth } from 'date-fns';
 import React, { useState } from 'react';
+import { getPrevMonthDays } from '../helpers/getPrevMonthDays';
 import CalendarBody from './calendarBody';
 import CalendarHead from './calendarHead';
 
@@ -11,9 +12,10 @@ const Calendar = () => {
     const getDays = (date: Date): number[] =>
         Array.from(Array(getDaysInMonth(date)).keys(), day => day + 1);
 
-    const monthName = format(dateToRender, 'MMMM');
-    const year = format(dateToRender, 'yyyy');
-
+    const monthName: string = format(dateToRender, 'MMMM');
+    const year: string = format(dateToRender, 'yyyy');
+    const prevMonthDays = getPrevMonthDays(dateToRender);
+    const days: number[] = [...prevMonthDays, ...getDays(dateToRender)];
     return (
         <div className={'calendar'}>
             <CalendarHead
@@ -22,7 +24,7 @@ const Calendar = () => {
                 monthName={monthName}
                 year={year}
             />
-            <CalendarBody days={getDays(dateToRender)} />
+            <CalendarBody days={days} />
         </div>
     );
 };

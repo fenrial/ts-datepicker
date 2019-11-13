@@ -12,9 +12,9 @@ const CalendarBody: React.FC<ICalendarBodyProps> = (
     return (
         <div className="calendar__body">
             {days.map((value: number, i: number) => (
-                <button className="calendar__day" key={i}>
+                <div className="calendar__day" key={i}>
                     {value}
-                </button>
+                </div>
             ))}
         </div>
     );
