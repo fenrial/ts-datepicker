@@ -1,6 +1,6 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import "./app.scss";
-import Calendar from "./components/calendar";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './app';
+import './app.scss';
 
-ReactDOM.render(<Calendar />, document.getElementById("root"));
+ReactDOM.render(<App />, document.getElementById('root'));

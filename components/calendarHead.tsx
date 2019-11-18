@@ -8,7 +8,7 @@ export interface ICalendarHeadProps {
     year: string;
 }
 
-const CalendarHead: React.SFC<ICalendarHeadProps> = props => {
+const CalendarHead: React.FC<ICalendarHeadProps> = props => {
     const { changeDate, currentDate, monthName, year } = props;
 
     const getNextMonth = () => {

@@ -1,21 +1,30 @@
-import { format, getDaysInMonth } from 'date-fns';
+import { eachDayOfInterval, format, getDaysInMonth, set } from 'date-fns';
+import { ru } from 'date-fns/locale';
 import React, { useState } from 'react';
 import { getPrevMonthDays } from '../helpers/getPrevMonthDays';
 import CalendarBody from './calendarBody';
 import CalendarHead from './calendarHead';
 
-// export interface ICalendarProps {}
+export interface ICalendarProps {
+    onDateChange: (date: Date) => Date;
+    initialDate: Date;
+}
 
-const Calendar = () => {
-    const [dateToRender, setDateToRender] = useState(new Date());
+const Calendar: React.FC<ICalendarProps> = (props: ICalendarProps) => {
+    const { initialDate } = props;
+    const [dateToRender, setDateToRender] = useState(initialDate || new Date());
 
-    const getDays = (date: Date): number[] =>
-        Array.from(Array(getDaysInMonth(date)).keys(), day => day + 1);
+    const getDays = (date: Date): Date[] =>
+        eachDayOfInterval({
+            start: set(date, { date: 1 }),
+            end: set(date, { date: getDaysInMonth(date) }),
+        });
 
-    const monthName: string = format(dateToRender, 'MMMM');
+    const monthName: string = format(dateToRender, 'LLLL', { locale: ru });
     const year: string = format(dateToRender, 'yyyy');
     const prevMonthDays = getPrevMonthDays(dateToRender);
-    const days: number[] = [...prevMonthDays, ...getDays(dateToRender)];
+    const days: Date[] = [...prevMonthDays, ...getDays(dateToRender)];
+
     return (
         <div className={'calendar'}>
             <CalendarHead
@@ -24,7 +33,7 @@ const Calendar = () => {
                 monthName={monthName}
                 year={year}
             />
-            <CalendarBody days={days} />
+            <CalendarBody onDateChange={props.onDateChange} days={days} />
         </div>
     );
 };
