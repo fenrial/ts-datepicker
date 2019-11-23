@@ -13,6 +13,7 @@ export interface ICalendarProps {
 const Calendar: React.FC<ICalendarProps> = (props: ICalendarProps) => {
     const { initialDate } = props;
     const [dateToRender, setDateToRender] = useState(initialDate || new Date());
+    const [selectedDay, setSelectedDay] = useState(dateToRender);
 
     const getDays = (date: Date): Date[] =>
         eachDayOfInterval({
@@ -33,7 +34,12 @@ const Calendar: React.FC<ICalendarProps> = (props: ICalendarProps) => {
                 monthName={monthName}
                 year={year}
             />
-            <CalendarBody onDateChange={props.onDateChange} days={days} />
+            <CalendarBody
+                selectedDay={selectedDay}
+                setSelectedDay={setSelectedDay}
+                onDateChange={props.onDateChange}
+                days={days}
+            />
         </div>
     );
 };
