@@ -22,13 +22,15 @@ const CalendarHead: React.FC<ICalendarHeadProps> = props => {
     return (
         <div className="calendar__head">
             <div className="calendar__month-wrap">
-                <button className="calendar__prev-month" onClick={getPrevMonth}>
-                    prev
-                </button>
+                <button
+                    className="calendar__control calendar__control--prev"
+                    onClick={getPrevMonth}
+                />
                 <div className="calendar__month-name">{`${monthName}, ${year}`}</div>
-                <button className="calendar__next-month" onClick={getNextMonth}>
-                    next
-                </button>
+                <button
+                    className="calendar__control calendar__control--next"
+                    onClick={getNextMonth}
+                />
             </div>
             <div className="calendar__days-of-week">
                 <span className="calendar__weekday">Пн</span>

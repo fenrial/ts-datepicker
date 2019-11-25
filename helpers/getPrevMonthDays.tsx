@@ -11,6 +11,12 @@ export const getPrevMonthDays = (date: Date) => {
     const lastPrevMonthDayOfWeek: number = getISODay(
         subDays(set(date, { date: 1 }), 1)
     );
+
+    if (lastPrevMonthDayOfWeek === 7) {
+        // елси последний день предыдущего месяца воскресенье, то не выводим
+        return [];
+    }
+
     const prevMonth = subMonths(date, 1);
     const prevMonthDaysCount: number = getDaysInMonth(prevMonth);
     const prevMonthDays: Date[] = [];

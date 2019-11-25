@@ -22,7 +22,7 @@ const Calendar: React.FC<ICalendarProps> = (props: ICalendarProps) => {
 
     const monthName: string = format(dateToRender, 'LLLL', { locale: ru });
     const year: string = format(dateToRender, 'yyyy');
-    const prevMonthDays = getPrevMonthDays(dateToRender);
+    const prevMonthDays = getPrevMonthDays(dateToRender); // если 1 день месяца понедельник, то не выводим предудыщие дни
     const days: Date[] = [...prevMonthDays, ...getDays(dateToRender)];
 
     return (
@@ -33,7 +33,11 @@ const Calendar: React.FC<ICalendarProps> = (props: ICalendarProps) => {
                 monthName={monthName}
                 year={year}
             />
-            <CalendarBody onDateChange={props.onDateChange} days={days} />
+            <CalendarBody
+                onDateChange={props.onDateChange}
+                days={days}
+                currentDate={dateToRender}
+            />
         </div>
     );
 };

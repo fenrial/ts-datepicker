@@ -1,25 +1,55 @@
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
 .calendar {
     width: 180px;
 
     &__month-wrap {
         display: flex;
+        align-items: center;
         justify-content: space-between;
+        margin-bottom: 10px;
+    }
+
+    &__head {
+        margin-bottom: 10px;
+    }
+
+    &__day, &__weekday {
+        width: 25px;
+        height: 25px;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
     }
 
     &__day {
-        width: 25px;
-        height: 25px;
-        display: inline-flex;
-    }
+        cursor: pointer;
+        transition: background 0.25s ease-in-out;
 
-    &__weekday {
-        width: 25px;
-        height: 25px;
-        display: inline-flex;
+        &:hover {
+            background: #d0dcfd;
+        }
     }
 
     &__month-name {
         white-space: nowrap;
         text-transform: capitalize;
+    }
+
+    &__control {
+        width: 20px;
+        height: 20px;
+        display: block;
+        padding: 0;
+        background: url("assets/icons//icon-arrow.svg") no-repeat center;
+        border: none;
+        cursor: pointer;
+        outline: none;
+
+        &--prev {
+            transform: rotate(180deg);
+        }
     }
 }
