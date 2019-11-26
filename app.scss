@@ -15,6 +15,16 @@ body {
     &__head {
         margin-bottom: 10px;
     }
+    
+    &__day {
+        width: 25px;
+        height: 25px;
+        display: inline-flex;
+
+        &--selected {
+            background: red;
+        }
+    }
 
     &__day, &__weekday {
         width: 25px;
