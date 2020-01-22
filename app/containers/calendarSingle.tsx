@@ -1,17 +1,15 @@
 import { eachDayOfInterval, format, getDaysInMonth, set } from 'date-fns';
 import { ru } from 'date-fns/locale';
 import React, { useState } from 'react';
-import { getPrevMonthDays } from '../helpers/getPrevMonthDays';
-import CalendarBody from './calendarBody';
-import CalendarHead from './calendarHead';
+import CalendarBody from '../components/calendarBody';
+import CalendarHead from '../components/calendarHead';
+import getPrevMonthDays from '../helpers/getPrevMonthDays';
+import { ICalendarSingleProps } from '../types';
 
-export interface ICalendarProps {
-    onDateChange: (date: Date) => Date;
-    initialDate: Date;
-}
-
-const Calendar: React.FC<ICalendarProps> = (props: ICalendarProps) => {
-    const { initialDate } = props;
+const CalendarSingle: React.FC<ICalendarSingleProps> = (
+    props: ICalendarSingleProps
+) => {
+    const { initialDate, onDateChange } = props;
     const [dateToRender, setDateToRender] = useState(initialDate || new Date());
     const [selectedDay, setSelectedDay] = useState(dateToRender);
 
@@ -24,10 +22,11 @@ const Calendar: React.FC<ICalendarProps> = (props: ICalendarProps) => {
     const monthName: string = format(dateToRender, 'LLLL', { locale: ru });
     const year: string = format(dateToRender, 'yyyy');
     const prevMonthDays = getPrevMonthDays(dateToRender); // если 1 день месяца понедельник, то не выводим предудыщие дни
+
     const days: Date[] = [...prevMonthDays, ...getDays(dateToRender)];
 
     return (
-        <div className={'calendar'}>
+        <div className="calendar">
             <CalendarHead
                 changeDate={setDateToRender}
                 currentDate={dateToRender}
@@ -37,11 +36,11 @@ const Calendar: React.FC<ICalendarProps> = (props: ICalendarProps) => {
             <CalendarBody
                 selectedDay={selectedDay}
                 setSelectedDay={setSelectedDay}
-                onDateChange={props.onDateChange}
+                onDateChange={onDateChange}
                 days={days}
             />
         </div>
     );
 };
 
-export default Calendar;
+export default CalendarSingle;

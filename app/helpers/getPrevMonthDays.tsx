@@ -2,12 +2,13 @@ import {
     getDaysInMonth,
     getISODay,
     getMonth,
+    getYear,
     set,
     subDays,
     subMonths,
 } from 'date-fns';
 
-export const getPrevMonthDays = (date: Date) => {
+const getPrevMonthDays = (date: Date): Date[] => {
     const lastPrevMonthDayOfWeek: number = getISODay(
         subDays(set(date, { date: 1 }), 1)
     );
@@ -17,17 +18,18 @@ export const getPrevMonthDays = (date: Date) => {
         return [];
     }
 
-    const prevMonth = subMonths(date, 1);
+    const prevMonth: Date = subMonths(date, 1);
     const prevMonthDaysCount: number = getDaysInMonth(prevMonth);
     const prevMonthDays: Date[] = [];
 
     for (
         let dayCounter = 0;
         dayCounter < lastPrevMonthDayOfWeek;
-        dayCounter++
+        dayCounter += 1
     ) {
         prevMonthDays.push(
             set(date, {
+                year: getYear(prevMonth),
                 month: getMonth(prevMonth),
                 date:
                     prevMonthDaysCount -
@@ -39,3 +41,5 @@ export const getPrevMonthDays = (date: Date) => {
 
     return prevMonthDays;
 };
+
+export default getPrevMonthDays;

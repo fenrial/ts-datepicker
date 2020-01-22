@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Day from './day';
 
 export interface ICalendarBodyProps {
@@ -15,13 +15,13 @@ const CalendarBody: React.FC<ICalendarBodyProps> = (
 
     return (
         <div className="calendar__body">
-            {days.map((value: Date, i: number) => (
+            {days.map((value: Date) => (
                 <Day
                     selectedDay={selectedDay}
                     setSelectedDay={setSelectedDay}
                     onDateChange={onDateChange}
                     value={value}
-                    key={i}
+                    key={value.toString()}
                 />
             ))}
         </div>

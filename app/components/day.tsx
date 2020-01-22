@@ -11,7 +11,7 @@ export interface IDayProps {
 const Day: React.SFC<IDayProps> = (props: IDayProps) => {
     const { value, onDateChange, selectedDay, setSelectedDay } = props;
 
-    const onDateChangeHandle = () => {
+    const onDateChangeHandle = (): void => {
         onDateChange(value);
         setSelectedDay(value);
     };
@@ -20,14 +20,15 @@ const Day: React.SFC<IDayProps> = (props: IDayProps) => {
         format(value, 'dd.MM.yyyy') === format(selectedDay, 'dd.MM.yyyy');
 
     return (
-        <div
+        <button
+            type="button"
             className={`calendar__day ${
                 isSelected ? 'calendar__day--selected' : ''
             }`}
             onClick={onDateChangeHandle}
         >
             {format(value, 'd')}
-        </div>
+        </button>
     );
 };
 

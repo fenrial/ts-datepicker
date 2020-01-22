@@ -2,6 +2,9 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
+* {
+    font-family: inherit;
+}
 .calendar {
     width: 180px;
 
@@ -15,18 +18,19 @@ body {
     &__head {
         margin-bottom: 10px;
     }
-    
+
     &__day {
         width: 25px;
         height: 25px;
         display: inline-flex;
 
         &--selected {
-            background: red;
+            background: #d0dcfd;
         }
     }
 
-    &__day, &__weekday {
+    &__day,
+    &__weekday {
         width: 25px;
         height: 25px;
         display: inline-flex;
@@ -37,6 +41,10 @@ body {
     &__day {
         cursor: pointer;
         transition: background 0.25s ease-in-out;
+        background: none;
+        outline: none;
+        border: none;
+        font-size: 16px;
 
         &:hover {
             background: #d0dcfd;
@@ -53,7 +61,7 @@ body {
         height: 20px;
         display: block;
         padding: 0;
-        background: url("assets/icons//icon-arrow.svg") no-repeat center;
+        background: url('assets/icons//icon-arrow.svg') no-repeat center;
         border: none;
         cursor: pointer;
         outline: none;

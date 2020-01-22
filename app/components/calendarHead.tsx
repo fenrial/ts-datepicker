@@ -11,11 +11,11 @@ export interface ICalendarHeadProps {
 const CalendarHead: React.FC<ICalendarHeadProps> = props => {
     const { changeDate, currentDate, monthName, year } = props;
 
-    const getNextMonth = () => {
+    const getNextMonth = (): void => {
         changeDate(addMonths(currentDate, 1));
     };
 
-    const getPrevMonth = () => {
+    const getPrevMonth = (): void => {
         changeDate(subMonths(currentDate, 1));
     };
 
@@ -23,13 +23,17 @@ const CalendarHead: React.FC<ICalendarHeadProps> = props => {
         <div className="calendar__head">
             <div className="calendar__month-wrap">
                 <button
+                    type="button"
                     className="calendar__control calendar__control--prev"
                     onClick={getPrevMonth}
+                    aria-label="Предыдущий месяц"
                 />
                 <div className="calendar__month-name">{`${monthName}, ${year}`}</div>
                 <button
+                    type="button"
                     className="calendar__control calendar__control--next"
                     onClick={getNextMonth}
+                    aria-label="Следующий месяц"
                 />
             </div>
             <div className="calendar__days-of-week">
