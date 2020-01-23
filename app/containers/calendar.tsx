@@ -1,28 +1,28 @@
 import * as React from 'react';
 import CalendarRange from './calendarRange';
 import CalendarSingle from './calendarSingle';
-import {
-    ICalendarSingleProps,
-    ICalendarRangeProps,
-    IRangeDateProps,
-} from '../types';
+import { ICalendarSingleProps, ICalendarRangeProps } from '../types';
 
 type CalendarProps = ICalendarSingleProps | ICalendarRangeProps;
 
 const isCalendarRange = (
-    initialDate: IRangeDateProps
-): initialDate is IRangeDateProps => {
-    return (initialDate as IRangeDateProps).startDate instanceof Date;
+    props: CalendarProps
+): props is ICalendarRangeProps => {
+    return (
+        (props as ICalendarRangeProps).initialDate.startDate !== undefined &&
+        props.mode === 'range'
+    );
 };
 
-const isCalendarSingle = (initialDate: Date): initialDate is Date => {
-    return initialDate instanceof Date;
+const isCalendarSingle = (
+    props: CalendarProps
+): props is ICalendarSingleProps => {
+    return props.initialDate instanceof Date && props.mode === 'single';
 };
 
 const RootCalendar: React.SFC<CalendarProps> = (props: CalendarProps) => {
-    const { initialDate, onDateChange, mode } = props;
-    // TODO: допилить
-    if (isCalendarRange(initialDate)) {
+    if (isCalendarRange(props)) {
+        const { initialDate, onDateChange, mode } = props;
         return (
             <CalendarRange
                 mode={mode}
@@ -32,7 +32,8 @@ const RootCalendar: React.SFC<CalendarProps> = (props: CalendarProps) => {
         );
     }
 
-    if (isCalendarSingle(initialDate)) {
+    if (isCalendarSingle(props)) {
+        const { initialDate, onDateChange, mode } = props;
         return (
             <CalendarSingle
                 mode={mode}

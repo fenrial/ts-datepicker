@@ -34,19 +34,18 @@
         "start": "parcel index.html --open",
         "build": "parcel build index.html",
         "precommit": "lint-staged",
-        "tslint": "node_modules/.bin/tslint -p tsconfig.json",
-        "typecheck": "tsc -p tsconfig.json"
-    },
-    "lint-staged": {
-        "*.{ts,tsx}": [
-            "tslint",
-            "prettier --write",
-            "git add"
-        ]
+        "lint": "eslint --fix app/**/*.{ts,tsx}"
     },
     "husky": {
         "hooks": {
-            "pre-commit": "yarn run typecheck && yarn run precommit"
+            "pre-commit": "lint-staged"
         }
+    },
+    "lint-staged": {
+        "./**/*.{js,jsx,ts,tsx}": [
+            "prettier --write",
+            "yarn lint",
+            "git add"
+        ]
     }
 }

@@ -35,6 +35,10 @@ const getPrevMonthDays = (date: Date): Date[] => {
                     prevMonthDaysCount -
                     (lastPrevMonthDayOfWeek - 1) +
                     dayCounter,
+                hours: 0,
+                minutes: 0,
+                seconds: 0,
+                milliseconds: 0,
             })
         );
     }

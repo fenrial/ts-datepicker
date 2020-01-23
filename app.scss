@@ -5,6 +5,17 @@ body {
 * {
     font-family: inherit;
 }
+
+.app {
+    &__wrap {
+        display: flex;
+    }
+
+    &__calendar {
+        margin-right: 50px;
+    }
+}
+
 .calendar {
     width: 180px;
 
@@ -17,16 +28,6 @@ body {
 
     &__head {
         margin-bottom: 10px;
-    }
-
-    &__day {
-        width: 25px;
-        height: 25px;
-        display: inline-flex;
-
-        &--selected {
-            background: #d0dcfd;
-        }
     }
 
     &__day,
@@ -48,6 +49,14 @@ body {
 
         &:hover {
             background: #d0dcfd;
+        }
+
+        &--selected {
+            background: #d0dcfd;
+        }
+
+        &--inrange {
+            background: rgba(#d0dcfd, 0.6);
         }
     }
 

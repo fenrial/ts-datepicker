@@ -3,15 +3,15 @@ import Day from './day';
 
 export interface ICalendarBodyProps {
     days: Date[];
+    range?: Date[];
     selectedDay: Date;
-    onDateChange: (date: Date) => Date;
     setSelectedDay: (date: Date) => void;
 }
 
 const CalendarBody: React.FC<ICalendarBodyProps> = (
     props: ICalendarBodyProps
 ) => {
-    const { days, onDateChange, selectedDay, setSelectedDay } = props;
+    const { days, selectedDay, setSelectedDay, range } = props;
 
     return (
         <div className="calendar__body">
@@ -19,8 +19,8 @@ const CalendarBody: React.FC<ICalendarBodyProps> = (
                 <Day
                     selectedDay={selectedDay}
                     setSelectedDay={setSelectedDay}
-                    onDateChange={onDateChange}
                     value={value}
+                    range={range}
                     key={value.toString()}
                 />
             ))}

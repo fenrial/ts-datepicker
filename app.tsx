@@ -1,6 +1,7 @@
 import { format } from 'date-fns';
 import * as React from 'react';
 import Calendar from './app/containers/calendar';
+import { IRangeDateProps } from './app/types';
 
 const App: React.SFC = () => {
     const [currentDate, setDate] = React.useState(new Date());
@@ -9,7 +10,10 @@ const App: React.SFC = () => {
         endDate: new Date(),
     });
     const formattedDate = format(currentDate, 'dd.MM.yyyy');
-
+    const formattedRangeDate = {
+        startDate: format(currentRangeDate.startDate, 'dd.MM.yyyy'),
+        endDate: format(currentRangeDate.endDate, 'dd.MM.yyyy'),
+    };
     const handleSingleDateChange = (date: Date): Date => {
         setDate(date);
         return date;
@@ -18,10 +22,7 @@ const App: React.SFC = () => {
     const handleRangeDateChange = ({
         startDate,
         endDate,
-    }: {
-        startDate: Date;
-        endDate: Date;
-    }): { startDate: Date; endDate: Date } => {
+    }: IRangeDateProps): IRangeDateProps => {
         setRangeDate({ startDate, endDate });
         return { startDate, endDate };
     };
@@ -35,6 +36,7 @@ const App: React.SFC = () => {
                         initialDate={currentDate}
                         onDateChange={handleSingleDateChange}
                     />
+                    <p>{`Выбранная дата: ${formattedDate}`}</p>
                 </div>
                 <div className="app__calendar">
                     <Calendar
@@ -42,9 +44,9 @@ const App: React.SFC = () => {
                         initialDate={currentRangeDate}
                         onDateChange={handleRangeDateChange}
                     />
+                    <p>{`Выбранная дата: ${formattedRangeDate.startDate} - ${formattedRangeDate.endDate}`}</p>
                 </div>
             </div>
-            <p>{`Выбранная дата: ${formattedDate}`}</p>
         </div>
     );
 };

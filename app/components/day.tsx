@@ -1,30 +1,31 @@
-import { format } from 'date-fns';
+import { format, isEqual } from 'date-fns';
 import * as React from 'react';
 
 export interface IDayProps {
     value: Date;
     selectedDay: Date;
-    onDateChange: (date: Date) => Date;
+    range?: Date[];
     setSelectedDay: (date: Date) => void;
 }
 
 const Day: React.SFC<IDayProps> = (props: IDayProps) => {
-    const { value, onDateChange, selectedDay, setSelectedDay } = props;
+    const { value, selectedDay, setSelectedDay, range } = props;
 
     const onDateChangeHandle = (): void => {
-        onDateChange(value);
         setSelectedDay(value);
     };
 
     const isSelected =
         format(value, 'dd.MM.yyyy') === format(selectedDay, 'dd.MM.yyyy');
+    const inRange =
+        typeof range !== 'undefined' && range.some(day => isEqual(day, value));
 
     return (
         <button
             type="button"
-            className={`calendar__day ${
-                isSelected ? 'calendar__day--selected' : ''
-            }`}
+            className={`calendar__day 
+            ${isSelected ? 'calendar__day--selected' : ''}
+            ${inRange ? 'calendar__day--inrange' : ''}`}
             onClick={onDateChangeHandle}
         >
             {format(value, 'd')}
